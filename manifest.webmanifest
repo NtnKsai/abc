@@ -1,0 +1,13 @@
+{
+  "name": "ABC FLASHCARDS — Learn Play Remember",
+  "short_name": "ABC Cards",
+  "description": "Interactive English alphabet flashcards for the classroom.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f9fd",
+  "theme_color": "#f5f8ff",
+  "icons": [
+    { "src": "assets/icons/app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8ff">
+  <meta name="description" content="ABC FLASHCARDS — สื่อฝึกจดจำตัวอักษรภาษาอังกฤษ A–Z สำหรับห้องเรียน">
+  <title>ABC FLASHCARDS | Learn • Play • Remember</title>
+  <link rel="icon" href="assets/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#home" aria-label="ABC Flashcards หน้าแรก" id="brandHome">
+        <span class="brand-mark">A<span>B</span>C</span>
+        <span class="brand-copy"><strong>ABC FLASHCARDS</strong><small>Learn • Play • Remember</small></span>
+      </a>
+      <div class="topbar-actions">
+        <button class="icon-button" id="soundToggle" type="button" aria-label="เปิดหรือปิดเสียง" title="เปิด/ปิดเสียง"><span id="soundIcon">🔊</span></button>
+        <button class="icon-button" id="settingsOpen" type="button" aria-label="ตั้งค่า" title="ตั้งค่า">⚙</button>
+        <button class="icon-button" id="aboutOpen" type="button" aria-label="เกี่ยวกับ" title="เกี่ยวกับ">ⓘ</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="view active" id="homeView" aria-labelledby="heroTitle">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="sparkle">✦</span> ENGLISH ALPHABET LEARNING</div>
+            <h1 id="heroTitle">เรียนรู้ตัวอักษร<br><span>สนุกได้ทุกวัน</span></h1>
+            <p>ฝึกอ่าน จดจำ และทดสอบตัวอักษรภาษาอังกฤษ A–Z ผ่านแฟลชการ์ดแบบโต้ตอบ</p>
+            <div class="hero-pills"><span>26 Letters</span><span>Interactive</span><span>Classroom Ready</span></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="float-letter letter-a">A</div><div class="float-letter letter-b">b</div><div class="float-letter letter-c">C</div>
+            <div class="hero-sticker">ABC<br><small>LET'S GO!</small></div>
+            <span class="hero-star star-one">✦</span><span class="hero-star star-two">✧</span>
+          </div>
+        </div>
+
+        <section class="section-block">
+          <div class="section-heading"><div><span class="section-kicker">CHOOSE YOUR MODE</span><h2>เลือกโหมดการเรียนรู้</h2></div><span class="step-badge">01 / LEARN</span></div>
+          <div class="mode-grid">
+            <button class="mode-card mode-blue" data-mode="both" type="button"><span class="mode-icon">Aa</span><span class="mode-title">ตัวพิมพ์ใหญ่ + เล็ก</span><span class="mode-desc">A a ถึง Z z</span><span class="mode-arrow">↗</span></button>
+            <button class="mode-card mode-orange" data-mode="upper" type="button"><span class="mode-icon">A</span><span class="mode-title">ตัวพิมพ์ใหญ่</span><span class="mode-desc">UPPERCASE A–Z</span><span class="mode-arrow">↗</span></button>
+            <button class="mode-card mode-green" data-mode="lower" type="button"><span class="mode-icon">a</span><span class="mode-title">ตัวพิมพ์เล็ก</span><span class="mode-desc">LOWERCASE a–z</span><span class="mode-arrow">↗</span></button>
+            <button class="mode-card mode-purple" data-mode="picture" type="button"><span class="mode-icon">🖼</span><span class="mode-title">ภาพประกอบ</span><span class="mode-desc">LETTER + PICTURE + WORD</span><span class="mode-arrow">↗</span></button>
+          </div>
+        </section>
+
+        <section class="section-block activity-block">
+          <div class="section-heading"><div><span class="section-kicker">LET'S PRACTICE</span><h2>เลือกกิจกรรม</h2></div><span class="step-badge">02 / PLAY</span></div>
+          <div class="activity-grid">
+            <button class="activity-card activity-random" id="startRandom" type="button"><span class="activity-symbol">⤨</span><span><strong>Random Flash Card</strong><small>สุ่มตัวอักษรแบบไม่ซ้ำในหนึ่งรอบ</small></span><span class="activity-go">→</span></button>
+            <button class="activity-card activity-reveal" id="startReveal" type="button"><span class="activity-symbol">◉</span><span><strong>Hide &amp; Reveal</strong><small>ดูภาพใบ้ ทายตัวอักษร แล้วเปิดเฉลย</small></span><span class="activity-go">→</span></button>
+            <button class="activity-card activity-quiz" id="startQuiz" type="button"><span class="activity-symbol">✓</span><span><strong>Multiple Choice Quiz</strong><small>ฟังคำใบ้ แล้วเลือกคำตอบ 4 ตัวเลือก</small></span><span class="activity-go">→</span></button>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" id="cardsView" aria-label="แฟลชการ์ด">
+        <div class="workspace-head">
+          <button class="back-button" data-home type="button">← <span>หน้าหลัก</span></button>
+          <div class="workspace-title"><span class="section-kicker" id="cardsModeKicker">FLASHCARD MODE</span><h2 id="cardsModeTitle">Uppercase + Lowercase</h2></div>
+          <div class="head-actions"><span class="counter-chip" id="letterCounter">01 / 26</span><button class="soft-button" id="cardsFullscreen" type="button">⛶ <span>เต็มจอ</span></button></div>
+        </div>
+        <div class="flashcard-stage" id="flashcardStage">
+          <div class="flashcard" id="flashcard">
+            <div class="flashcard-topline"><span class="letter-chip" id="letterChip">LETTER A</span><span class="card-decoration">✦</span></div>
+            <div class="letter-display" id="letterDisplay" aria-live="polite">Aa</div>
+            <div class="picture-panel" id="picturePanel" hidden>
+              <img id="pictureImage" src="assets/images/a.svg" alt="ภาพประกอบคำศัพท์ Apple">
+              <div class="picture-word" id="pictureWord">Apple</div>
+            </div>
+            <div class="card-bottomline"><span id="cardHint">Say the letter aloud!</span><button class="audio-button" id="letterAudio" type="button" aria-label="ฟังเสียงตัวอักษร">🔊 <span>Listen</span></button></div>
+          </div>
+        </div>
+        <div class="control-panel" id="cardControls">
+          <button class="control-button" id="previousCard" type="button">← <span>Previous</span></button>
+          <button class="control-button random-control" id="randomCard" type="button">⤨ <span>Random</span></button>
+          <button class="control-button primary-control" id="nextCard" type="button"><span>Next</span> →</button>
+          <button class="control-button" id="autoPlay" type="button">▶ <span>Auto Play</span></button>
+        </div>
+        <div class="speed-row" id="speedRow"><span>ความเร็ว:</span><button class="speed-choice" data-speed="5000" type="button">ช้า 5s</button><button class="speed-choice active" data-speed="3000" type="button">ปกติ 3s</button><button class="speed-choice" data-speed="1000" type="button">เร็ว 1s</button><span class="keyboard-tip">ใช้ปุ่ม ← → เปลี่ยนการ์ด · Space สุ่ม · F เต็มจอ</span></div>
+        <div class="alphabet-strip" id="alphabetStrip" aria-label="เลือกตัวอักษร"></div>
+      </section>
+
+      <section class="view" id="revealView" aria-label="กิจกรรม Hide and Reveal">
+        <div class="workspace-head"><button class="back-button" data-home type="button">← <span>หน้าหลัก</span></button><div class="workspace-title"><span class="section-kicker">RECALL PRACTICE</span><h2>Hide &amp; Reveal</h2></div><span class="counter-chip" id="revealCounter">01 / 10</span></div>
+        <div class="test-instructions"><span class="instruction-icon">💡</span><div><strong>ลองทายดูสิ!</strong><small>ดูภาพและคำศัพท์ แล้วบอกว่าขึ้นต้นด้วยตัวอักษรอะไร</small></div></div>
+        <div class="reveal-card" id="revealCard">
+          <div class="reveal-visual"><img id="revealImage" src="assets/images/a.svg" alt="Apple"><span class="reveal-word" id="revealWord">Apple</span></div>
+          <div class="reveal-answer"><span class="answer-label">WHAT IS THE FIRST LETTER?</span><div class="answer-letter" id="revealLetter">?</div><span class="answer-sub" id="revealSub">คิดคำตอบก่อนกดเปิดเฉลย</span></div>
+        </div>
+        <div class="test-controls"><button class="control-button" id="revealSound" type="button">🔊 <span>ฟังคำศัพท์</span></button><button class="control-button primary-control" id="revealButton" type="button">ดูเฉลย</button><button class="control-button" id="newReveal" type="button">สุ่มชุดใหม่ ↗</button></div>
+        <div class="mark-row" id="revealMarks" hidden><span>นักเรียนตอบได้หรือไม่?</span><button class="mark-button correct-mark" id="markCorrect" type="button">✓ ตอบถูก</button><button class="mark-button wrong-mark" id="markWrong" type="button">✕ ตอบผิด</button></div>
+        <div class="mini-progress"><span id="revealProgress"></span></div>
+        <div class="results-inline" id="revealResult" hidden></div>
+      </section>
+
+      <section class="view" id="quizView" aria-label="แบบทดสอบปรนัย">
+        <div class="workspace-head"><button class="back-button" data-home type="button">← <span>หน้าหลัก</span></button><div class="workspace-title"><span class="section-kicker">LISTEN &amp; CHOOSE</span><h2>Multiple Choice Quiz</h2></div><span class="counter-chip" id="quizCounter">01 / 10</span></div>
+        <div class="quiz-progress-head"><span id="quizProgressText">คำถามที่ 1</span><strong id="quizScoreText">คะแนน 0</strong></div><div class="mini-progress"><span id="quizProgress"></span></div>
+        <div class="quiz-card">
+          <div class="quiz-prompt"><span class="prompt-icon">🎧</span><span class="section-kicker">LISTEN TO THE LETTER</span><h3>ฟังเสียง แล้วเลือกตัวอักษรที่ถูกต้อง</h3><button class="listen-large" id="quizListen" type="button">🔊 ฟังอีกครั้ง</button></div>
+          <div class="quiz-choices" id="quizChoices"></div>
+          <div class="quiz-feedback" id="quizFeedback" aria-live="polite" hidden></div>
+          <button class="primary-button next-question" id="nextQuestion" type="button" hidden>ข้อต่อไป →</button>
+        </div>
+      </section>
+
+      <section class="view" id="resultsView" aria-label="สรุปผลการทดสอบ">
+        <div class="results-card">
+          <div class="results-confetti">✦　✧　✦</div><span class="section-kicker">YOUR LEARNING RESULT</span><h2 id="resultsTitle">เก่งมาก!</h2><p id="resultsSubtitle">มาดูผลการฝึกของคุณกัน</p>
+          <div class="score-ring" id="scoreRing"><div><strong id="scorePercent">0%</strong><small>ACCURACY</small></div></div>
+          <div class="score-stats"><div><strong id="totalCount">10</strong><small>ทั้งหมด</small></div><div><strong class="stat-correct" id="correctCount">0</strong><small>ตอบถูก</small></div><div><strong class="stat-wrong" id="wrongCount">0</strong><small>ตอบผิด</small></div></div>
+          <div class="results-actions"><button class="primary-button" id="retryTest" type="button">เล่นอีกครั้ง ↻</button><button class="secondary-button" data-home type="button">กลับหน้าหลัก</button></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer" id="appFooter"><span>Made for curious learners <b>✦</b></span><span>Developed by <strong>NtnKsai</strong> · โรงเรียนวัดแคทราย (บุญประชาสรรค์)</span></footer>
+  </div>
+
+  <button class="present-controls-toggle" id="presentControlsToggle" type="button" aria-label="ซ่อนหรือแสดงปุ่มควบคุม" title="ซ่อน/แสดงปุ่มควบคุม">☰</button>
+
+  <div class="modal-backdrop" id="settingsModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="modal-head"><div><span class="section-kicker">PERSONALIZE</span><h2 id="settingsTitle">ตั้งค่าการใช้งาน</h2></div><button class="modal-close" data-close-modal type="button" aria-label="ปิด">×</button></div>
+      <label class="setting-line"><span><strong>เสียงประกอบ</strong><small>เปิดหรือปิดเสียงอ่านตัวอักษรและคำศัพท์</small></span><input type="checkbox" id="settingSound" checked></label>
+      <label class="setting-line"><span><strong>แสดงคำศัพท์</strong><small>แสดงชื่อคำศัพท์ในโหมดภาพประกอบ</small></span><input type="checkbox" id="settingWords" checked></label>
+      <label class="setting-line"><span><strong>จำนวนข้อทดสอบ</strong><small>เลือกจำนวนคำถามในแต่ละรอบ</small></span><select id="settingCount"><option value="10">10 ข้อ</option><option value="15">15 ข้อ</option><option value="20">20 ข้อ</option><option value="26">26 ข้อ</option></select></label>
+      <label class="setting-line"><span><strong>พื้นหลัง</strong><small>เลือกโทนสีหน้าการ์ด</small></span><select id="settingTheme"><option value="sky">ฟ้าอ่อน</option><option value="lavender">ม่วงอ่อน</option><option value="cream">ครีม</option><option value="mint">เขียวมิ้นต์</option></select></label>
+      <button class="primary-button modal-done" id="saveSettings" type="button">บันทึกการตั้งค่า</button>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="aboutModal" hidden><section class="modal about-modal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle"><div class="modal-head"><div><span class="section-kicker">ABOUT THIS APP</span><h2 id="aboutTitle">เกี่ยวกับ ABC FLASHCARDS</h2></div><button class="modal-close" data-close-modal type="button" aria-label="ปิด">×</button></div><div class="about-brand">A<span>B</span>C</div><h3>ABC FLASHCARDS</h3><p>สื่อการเรียนรู้ตัวอักษรภาษาอังกฤษ A–Z ที่ออกแบบเพื่อใช้ฝึกอ่าน จดจำ และทำกิจกรรมร่วมกันในห้องเรียน</p><div class="credit-box"><small>DEVELOPED BY</small><strong>NtnKsai</strong><span>โรงเรียนวัดแคทราย (บุญประชาสรรค์)</span></div><button class="primary-button modal-done" data-close-modal type="button">ปิด</button></section></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
